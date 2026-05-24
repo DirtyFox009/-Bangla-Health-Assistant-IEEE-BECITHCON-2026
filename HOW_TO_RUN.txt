@@ -1,0 +1,124 @@
+╔══════════════════════════════════════════════════════════════╗
+║         বাংলা স্বাস্থ্য সহকারী — HOW TO RUN                ║
+║         Bangla Health Chatbot — Setup Guide                  ║
+╚══════════════════════════════════════════════════════════════╝
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+STEP 1: Get your FREE Google Gemini API Key
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Open browser → go to: https://aistudio.google.com
+2. Sign in with Google account
+3. Click "Get API Key" in the menu
+4. Click "Create API Key in new project"
+5. COPY the key (starts with AIzaSy...)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+STEP 2: Paste your key into .env file
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Open the file called ".env" (in this folder)
+2. Replace "paste_your_key_here" with your actual key
+3. It should look like:
+   GEMINI_API_KEY=AIzaSyXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+4. Save the file
+
+⚠️ NEVER share this key or upload it to GitHub!
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+STEP 3: Install Python (if not installed)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Check if Python is installed:
+  → Open Command Prompt (Windows) / Terminal (Mac)
+  → Type: python --version
+  → If you see "Python 3.x.x" → skip to Step 4
+
+If not installed:
+  → Go to: https://python.org/downloads
+  → Download Python 3.11 or newer
+  → During install: CHECK "Add Python to PATH" ✓
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+STEP 4: Install required libraries
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Open Command Prompt / Terminal
+2. Navigate to this folder:
+   → Windows: cd Desktop\bangla-health-chatbot
+   → Mac/Linux: cd ~/Desktop/bangla-health-chatbot
+3. Run this command:
+   pip install -r requirements.txt
+4. Wait for "Successfully installed" messages
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+STEP 5: Run the chatbot!
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+In the same terminal, type:
+  python app.py
+
+You will see:
+  ══════════════════════════════════════════════
+    বাংলা স্বাস্থ্য চ্যাটবট — চালু হচ্ছে...
+    Open browser: http://localhost:5000
+  ══════════════════════════════════════════════
+
+Open your browser → go to: http://localhost:5000
+Type a symptom in Bangla → Press Enter!
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+STEP 6: Export logs for Muaz (evaluation)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+After testing, go to: http://localhost:5000/export-log
+→ This gives all conversation logs as JSON
+→ Save this file and send to Muaz
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+TROUBLESHOOTING
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+ERROR: "GEMINI_API_KEY not found"
+  → Open .env file and make sure key is pasted correctly
+  → No spaces around the = sign
+
+ERROR: "pip not found"
+  → Reinstall Python and check "Add to PATH"
+
+ERROR: "Address already in use"
+  → Another program is using port 5000
+  → In app.py, change port=5000 to port=5001
+  → Then go to http://localhost:5001
+
+ERROR: Response in English instead of Bangla
+  → The API key is working but prompt needs adjustment
+  → This is rare with Gemini 1.5 Flash
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PROJECT FILES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+bangla-health-chatbot/
+├── app.py              ← Main Python backend (DO NOT RENAME)
+├── requirements.txt    ← Library list
+├── .env               ← Your API key (KEEP SECRET)
+├── HOW_TO_RUN.txt     ← This file
+├── session_logs.json  ← Created automatically when you chat
+└── templates/
+    └── index.html     ← The chat interface
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+IEEE PAPER DETAILS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+For the paper, note these tech details:
+  - Language:    Python 3.11+
+  - Framework:   Flask 3.0.0
+  - AI Model:    Google Gemini 1.5 Flash
+  - Frontend:    HTML5, CSS3, JavaScript (Vanilla)
+  - Font:        Hind Siliguri (Google Fonts)
+  - Database:    JSON file (session_logs.json)
+  - Protocol:    REST API (HTTP POST /chat)
+
+Give these details to Moba for the Implementation section.
