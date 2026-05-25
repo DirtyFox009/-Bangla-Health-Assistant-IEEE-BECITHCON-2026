@@ -1,4 +1,4 @@
-"""
+﻿"""
 Bangla Health Chatbot - IEEE BECITHCON-2026
 Backend: Flask + Groq (LLaMA 3.1)
 Author: Shibli Sanjid Faheem & Team
@@ -11,6 +11,9 @@ import os, json, datetime, uuid
 from dotenv import load_dotenv
 
 load_dotenv()
+import sys
+print("Starting...", flush=True)
+print(f"KEY: {bool(os.getenv('GROQ_API_KEY'))}", flush=True)
 
 app = Flask(__name__)
 CORS(app)
