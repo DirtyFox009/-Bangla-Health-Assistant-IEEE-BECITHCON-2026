@@ -407,8 +407,11 @@
   }
 
   function formatBotMessage(text) {
-    // Render emoji section headers as styled blocks
+    // Escape HTML, then render the light markdown the LLM produces
     return text
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/^#{1,4}\s*([^\n]+)\n?/gm, '<div class="section"><div class="section-title">$1</div></div>')
+      .replace(/\*\*([^*\n]+)\*\*/g, '<strong>$1</strong>')
       .replace(/🔍([^\n]*)/g, '<div class="section"><div class="section-title">🔍$1</div></div>')
       .replace(/🏠([^\n]*)/g, '<div class="section"><div class="section-title">🏠$1</div></div>')
       .replace(/⚠️([^\n]*)/g, '<div class="section"><div class="section-title" style="color:#c0392b">⚠️$1</div></div>')

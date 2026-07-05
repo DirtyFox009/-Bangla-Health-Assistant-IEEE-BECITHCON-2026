@@ -129,7 +129,7 @@ def chat():
         completion = client.chat.completions.create(
             model=GROQ_MODEL,
             messages=messages,
-            max_tokens=1024,
+            max_tokens=2048,
             temperature=0.7,
         )
         bot_reply = completion.choices[0].message.content
