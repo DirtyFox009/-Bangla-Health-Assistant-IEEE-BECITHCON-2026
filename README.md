@@ -16,3 +16,6 @@ Built for IEEE BECITHCON-2026.
 - Model: TF-IDF (word + char n-grams) + Logistic Regression (scikit-learn)
 - Every chat message is classified; the category is shown in the UI, emergency messages trigger an urgent alert, and the most similar dataset entries are given to the LLM as reference answers
 - Evaluation metrics (accuracy, per-class F1, confusion matrix) are written to `model/metrics.json` by `train_model.py`
+
+## To access the Live link
+-LInk:https://bangla-health-assistant-ieee-becithcon.onrender.com/
