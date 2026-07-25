@@ -336,6 +336,9 @@
   let history   = [];
   let isTyping  = false;
 
+  // Base URL of Shibli's live backend server
+  const BACKEND_URL = 'https://bangla-health-assistant-ieee-becithcon.onrender.com';
+
   // Auto-grow textarea
   const ta = document.getElementById('userInput');
   ta.addEventListener('input', () => {
@@ -349,7 +352,7 @@
   // Start session on load
   async function initSession() {
     try {
-      const r = await fetch('/new-session', { method: 'POST' });
+      const r = await fetch(`${BACKEND_URL}/new-session`, { method: 'POST' });
       const d = await r.json();
       sessionId = d.session_id;
     } catch { sessionId = 'local-' + Date.now(); }
@@ -407,7 +410,7 @@
   }
 
   function formatBotMessage(text) {
-    // Escape HTML, then render the light markdown the LLM produces
+    // Escape HTML, then render light markdown from LLM
     return text
       .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
       .replace(/^#{1,4}\s*([^\n]+)\n?/gm, '<div class="section"><div class="section-title">$1</div></div>')
@@ -439,7 +442,7 @@
     history.push({ role: 'user', content: input });
 
     try {
-      const res = await fetch('/chat', {
+      const res = await fetch(`${BACKEND_URL}/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
